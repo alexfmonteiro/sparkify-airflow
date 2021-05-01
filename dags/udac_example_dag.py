@@ -105,8 +105,19 @@ for table in DIM_TABLES:
 run_quality_checks = DataQualityOperator(
     task_id="run_data_quality_checks", 
     dag=dag,
-    db_conn_id = "redshift_conn",
-    tables=["songplays","songs", "artists", "users", "time"]
+    db_conn_id="redshift_conn",
+    dq_checks=[
+        {'check_sql': "SELECT COUNT(*) FROM public.songplays WHERE playid is null", 'expected_result': 0},
+        {'check_sql': "SELECT COUNT(*) FROM public.songs WHERE songid is null", 'expected_result': 0},
+        {'check_sql': "SELECT COUNT(*) FROM public.artists WHERE artistid is null", 'expected_result': 0},
+        {'check_sql': "SELECT COUNT(*) FROM public.users WHERE userid is null", 'expected_result': 0},
+        {'check_sql': "SELECT COUNT(*) FROM public.time WHERE start_time is null", 'expected_result': 0},
+        {'check_sql': "SELECT 1 FROM public.songplays", 'expected_result': 1},
+        {'check_sql': "SELECT 1 FROM public.songs", 'expected_result': 1},
+        {'check_sql': "SELECT 1 FROM public.artists", 'expected_result': 1},
+        {'check_sql': "SELECT 1 FROM public.users", 'expected_result': 1},
+        {'check_sql': "SELECT 1 FROM public.time", 'expected_result': 1}
+    ]
 )
 
 end_task = DummyOperator(task_id="stop_execution", dag=dag)
