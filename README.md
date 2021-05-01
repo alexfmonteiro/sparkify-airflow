@@ -83,7 +83,7 @@ In order to run this ETL, an instance of Apache Airflow 1.10.x needs to be up an
 
 Also, Airflow needs to have the following connections configured:
  - A connection called `redshift_conn` of type PostgreSQL specifying a Redshift valid cluster.
- - A connection called `s3_conn` of type S3 specifying valid AWS credentials with privileges to create tables in Redshift.
+ - A connection called `aws_conn` of type S3 specifying valid AWS credentials with privileges to create tables in Redshift.
 
 
 
