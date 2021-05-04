@@ -42,7 +42,7 @@ And below is an example of what the data in a log file, `2018-11-12-events.json`
 
 ## Database
 
-![Entity-Relatioship Diagram](https://github.com/alexfmonteiro/sparkify-redshift/blob/main/sparkifydb_erd.png)
+![Entity-Relatioship Diagram](https://github.com/alexfmonteiro/sparkify-airflow/blob/main/images/sparkifydb_erd.png)
 
 The Redshift tables were designed to optimize queries on song play analysis. 
 
